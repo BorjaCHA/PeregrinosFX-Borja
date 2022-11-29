@@ -1,25 +1,32 @@
 package com.example.PeregrinosFX.bean;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="idUsuario",updatable = false,nullable = false)
+    @Column(name = "idUsuario", updatable = false, nullable = false)
+    private long idUser;
+
 
     private String usuario;
 
     private String contraseña;
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPerfil")
     private Perfil perfil;
 
-    private Peregrino peregrinos;
+    public long getIdUser() {
+        return idUser;
+    }
 
-    private ArrayList<Parada> paradas;
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -45,30 +52,14 @@ public class User {
         this.perfil = perfil;
     }
 
-    public Peregrino getPeregrinos() {
-        return peregrinos;
-    }
-
-    public void setPeregrinos(Peregrino peregrinos) {
-        this.peregrinos = peregrinos;
-    }
-
-    public ArrayList<Parada> getParadas() {
-        return paradas;
-    }
-
-    public void setParadas(ArrayList<Parada> paradas) {
-        this.paradas = paradas;
-    }
 
     @Override
     public String toString() {
         return "User{" +
-                "usuario='" + usuario + '\'' +
+                "idUser=" + idUser +
+                ", usuario='" + usuario + '\'' +
                 ", contraseña='" + contraseña + '\'' +
                 ", perfil=" + perfil +
-                ", peregrinos=" + peregrinos +
-                ", paradas=" + paradas +
                 '}';
     }
 }

@@ -1,8 +1,7 @@
 package com.example.PeregrinosFX.bean;
 
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,13 +16,19 @@ public class Estancia {
 
     private boolean vip = false;
 
-    @OneToMany (mappedBy = "estancia")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idParada")
     private Parada parada;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "pere_idPeregrino")
+
+    @ManyToOne()
+    @JoinColumn(name = "idPeregrino")
     private Peregrino peregrino;
 
+
+    public Estancia(){
+
+    }
     public long getIdEstancia() {
         return idEstancia;
     }

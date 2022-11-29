@@ -1,7 +1,8 @@
 package com.example.PeregrinosFX.bean;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -9,8 +10,8 @@ import java.time.LocalDate;
 public class Carnet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPeregrino", updatable = false, nullable = false)
-    private long idPeregrino;
+    @Column(name = "idCarnet", updatable = false, nullable = false)
+    private long idCarnet;
 
     private LocalDate fechaExp;
 
@@ -19,16 +20,20 @@ public class Carnet {
     private int numVips;
 
 
-    @OneToOne(mappedBy = "carnet")
-    private long idParada;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idParada")
+    private Parada paradaInicial;
 
+    public Carnet() {
 
-    public long getIdPeregrino() {
-        return idPeregrino;
     }
 
-    public void setIdPeregrino(long idPeregrino) {
-        this.idPeregrino = idPeregrino;
+    public long getIdCarnet() {
+        return idCarnet;
+    }
+
+    public void setIdCarnet(long idPeregrino) {
+        this.idCarnet = idCarnet;
     }
 
     public LocalDate getFechaExp() {
@@ -55,22 +60,24 @@ public class Carnet {
         this.numVips = numVips;
     }
 
-    public long getIdParada() {
-        return idParada;
+
+    public Parada getParadaInicial() {
+        return paradaInicial;
     }
 
-    public void setIdParada(long idParada) {
-        this.idParada = idParada;
+    public void setParadaInicial(Parada paradaInicial) {
+        this.paradaInicial = paradaInicial;
     }
 
     @Override
     public String toString() {
         return "Carnet{" +
-                "idPeregrino=" + idPeregrino +
+                "idCarnet=" + idCarnet +
                 ", fechaExp=" + fechaExp +
                 ", distancia=" + distancia +
                 ", numVips=" + numVips +
-                ", idParada=" + idParada +
+
+                ", paradaInicial=" + paradaInicial +
                 '}';
     }
 }

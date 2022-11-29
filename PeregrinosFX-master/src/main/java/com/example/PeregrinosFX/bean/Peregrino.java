@@ -1,30 +1,41 @@
 package com.example.PeregrinosFX.bean;
 
-import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="peregrinos")
+@Table(name = "peregrinos")
 public class Peregrino {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="idPeregrino", updatable = false,nullable = false)
+    @Column(name = "idPeregrino", updatable = false, nullable = false)
 
     private long idPeregrino;
 
 
     private String nombre;
 
+
     private String nacionalidad;
 
-    @OneToOne(mappedBy = "peregrino")
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCarnet")
     private Carnet carnet;
 
 
-    private ArrayList<Parada> paradas;
-    private ArrayList<Estancia> estancias;
+    @OneToMany(mappedBy = "peregrino")
+    private List<Estancia> estancias;
+
+    @ManyToMany
+    @JoinColumn(name ="paradas")
+    private List<Parada> paradas;
+    public Peregrino() {
+
+    }
 
     public long getIdPeregrino() {
         return idPeregrino;
@@ -58,20 +69,21 @@ public class Peregrino {
         this.carnet = carnet;
     }
 
-    public ArrayList<Parada> getParadas() {
-        return paradas;
-    }
 
-    public void setParadas(ArrayList<Parada> paradas) {
-        this.paradas = paradas;
-    }
-
-    public ArrayList<Estancia> getEstancias() {
+    public List<Estancia> getEstancias() {
         return estancias;
     }
 
-    public void setEstancias(ArrayList<Estancia> estancias) {
+    public void setEstancias(List<Estancia> estancias) {
         this.estancias = estancias;
+    }
+
+    public List<Parada> getParadas() {
+        return paradas;
+    }
+
+    public void setParadas(List<Parada> paradas) {
+        this.paradas = paradas;
     }
 
     @Override
@@ -81,8 +93,6 @@ public class Peregrino {
                 ", nombre='" + nombre + '\'' +
                 ", nacionalidad='" + nacionalidad + '\'' +
                 ", carnet=" + carnet +
-                ", paradas=" + paradas +
-                ", estancias=" + estancias +
                 '}';
     }
 }
