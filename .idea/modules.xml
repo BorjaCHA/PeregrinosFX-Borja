@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PeregrinosFX-master/PeregrinosFX.iml" filepath="$PROJECT_DIR$/PeregrinosFX-master/PeregrinosFX.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PeregrinosFX-Borja.iml" filepath="$PROJECT_DIR$/.idea/PeregrinosFX-Borja.iml" />
+    </modules>
+  </component>
+</project>
