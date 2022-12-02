@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.io.IOException;
 
@@ -18,10 +19,14 @@ import static com.sun.javafx.application.ParametersImpl.getParameters;
 import static javafx.application.Application.launch;
 
 @SpringBootApplication
+
+
 public class PeregrinosFxApplication extends Application{
 
     protected ConfigurableApplicationContext springContext;
     protected StageManager stageManager;
+
+
 
     public static void main(final String[] args) {
         Application.launch(args);

@@ -12,13 +12,18 @@ public class User {
     @Column(name = "idUsuario", updatable = false, nullable = false)
     private long idUser;
 
-
+    @Column(name = "usuario")
     private String usuario;
 
-    private String contraseña;
+    @Column(name = "contrasenia")
+    private String contrasenia;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idPerfil")
     private Perfil perfil;
+
+    public User() {
+
+    }
 
     public long getIdUser() {
         return idUser;
@@ -29,19 +34,19 @@ public class User {
     }
 
     public String getUsuario() {
-        return usuario;
+        return usuario.toString();
     }
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia.toString();
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contrasenia = contraseña;
     }
 
     public Perfil getPerfil() {
@@ -58,7 +63,7 @@ public class User {
         return "User{" +
                 "idUser=" + idUser +
                 ", usuario='" + usuario + '\'' +
-                ", contraseña='" + contraseña + '\'' +
+                ", contraseña='" + contrasenia + '\'' +
                 ", perfil=" + perfil +
                 '}';
     }

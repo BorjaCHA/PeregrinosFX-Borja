@@ -21,6 +21,7 @@ public class MenuPrincipalController implements Initializable {
     @Lazy
     @Autowired
     private StageManager stageManager;
+
     @FXML
     private Button iniciarsesionBTN;
 
